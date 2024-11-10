@@ -85,6 +85,18 @@ def get_customer_id(email):
         return customer.customer_id
     except NoResultFound:
         return None  # If customer not found, return None
+def get_customer_accounts(email):
+    try:
+        customer_id = get_customer_id(email)
+        if customer_id is None:
+            return None  # No customer found with this email
+        # Correct query to filter accounts by customer_id
+        all_accounts = Account.query.filter_by(customer_id=customer_id).all()
+        return all_accounts if all_accounts else None
+    except Exception as e:
+        print(f"Error fetching accounts: {e}")
+        return None
+    
 
 @app.route('/')
 def home():
@@ -161,6 +173,21 @@ def new_customer():
 @app.route('/existing-customer')
 def existing_customer():
     return render_template('existing_customer.html')
+
+@app.route('/do-transciction',methods=['GET','POST'])
+def transaction101():
+    if request.method=='Get':
+        form_data = request.form
+        email=form_data['email']
+        all_acc= get_customer_accounts(email)
+        if not all_acc:
+            # Flash message and redirect to an HTML page suggesting account creation
+            flash("Please create an account to do transactions.", "error")
+            return render_template('customer_details.html')
+        else:
+            print(all_acc)
+            return render_template('transaction.html',all_acc)
+
 
 
 @app.route('/transaction', methods=['GET','POST'])

@@ -13,9 +13,21 @@
             <input class="btn" type="submit" value="ADD ACCOUNT">
         </form>
         <br>
-        <form action="existing-custom">
+        <form action="do-transciction">
+             <input type="hidden" id="email" name="email">
             <input class="btn" type="submit" value="COMPLETE TRANSACTION">
         </form>
 	</div>
+     <script>
+        // Populate the hidden email field from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const email = localStorage.getItem("email");
+            if (email) {
+                document.getElementById("email").value = email;
+            } else {
+                alert("Email not found in localStorage.");
+            }
+        });
+    </script>
 </body>
 </html>
