@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style2.css') }}">
+    <title>Sign Up</title>
+</head>
+<body align="center">
+
+<div class="login-box">
+    <form action="customer-details" method="post" onsubmit="saveEmailToLocalStorage()">
+        <h1>Customer Registration</h1>
+        <input type="hidden" name="type" value="new">
+
+        <div class="textbox">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required autocomplete="off" maxlength="50">
+        </div>
+        <br>
+
+        <div class="textbox">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required autocomplete="off" maxlength="50">
+        </div>
+        <br>
+
+        <div class="textbox">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password"
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                   title="Must contain at least one number, one uppercase letter, one lowercase letter, and be at least 8 characters long" required autocomplete="off">
+        </div>
+        <br>
+
+        <div class="textbox">
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required>
+        </div>
+        <br>
+
+        <div class="textbox">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" placeholder="Enter Address" rows="3"></textarea>
+        </div>
+        <br>
+
+        <div class="textbox">
+            <label for="phone_number">Phone Number:</label>
+            <input type="tel" id="phone_number" name="phone_number" placeholder="Enter Phone Number" pattern="[0-9]{10,15}"
+                   title="Phone number should contain 10 to 15 digits" maxlength="15">
+        </div>
+        <br>
+
+        <div class="textbox">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email Address" required autocomplete="off" maxlength="100">
+        </div>
+        <br>
+
+        <input class="btn" type="submit" value="Register">
+    </form>
+</div>  
+
+<script>
+function saveEmailToLocalStorage() {
+    // Get the email input value
+    var email = document.getElementById("email").value;
+    // Save the email to localStorage
+    localStorage.setItem("email", email);
+}
+</script>
+
+</body>
+</html>
