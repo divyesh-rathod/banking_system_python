@@ -1,6 +1,8 @@
 from .database import db
 from sqlalchemy import Enum, ForeignKey
+from sqlalchemy.orm import relationship
 import enum
+from app.database import db
 from datetime import datetime, timezone
 import uuid
 from sqlalchemy.dialects.postgresql import UUID
@@ -32,6 +34,7 @@ class Customer(db.Model):
     email = db.Column(db.String(100), unique=True)
     role = db.Column(Enum(UserRole), nullable=False, default=UserRole.CUSTOMER)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    accounts = relationship("Account", back_populates="customer")
 
 
 class AccountType(enum.Enum):
@@ -48,6 +51,7 @@ class Account(db.Model):
     balance = db.Column(db.Float, default=0.0)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     status = db.Column(db.Boolean, default=True)  # True for Active, False for Inactive
+    customer = relationship("Customer", back_populates="accounts")
 
 
 class TransactionType(enum.Enum):

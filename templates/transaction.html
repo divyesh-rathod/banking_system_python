@@ -22,20 +22,39 @@
         </ul>
       {% endif %}
     {% endwith %}
-    <form action="transactions" method="post">
-        <div class="textbox">
-            <label for="amount">Amount: Rs. </label>
-            <input type="number" name="amount" value="" required placeholder="Enter Amount" autocomplete="off">
-        </div>
-        <br>
-        <label class="radio-inline">
-          <input type="radio" value='withdraw' name="option"><b>Withdraw</b>
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value='deposit' name="option"><b>Deposit</b>
-        </label>
-        <input class="btn" type="submit" value="Proceed" >
-    </form>
+<form action="/do-transciction" method="post" id="transactionForm">
+          <div class="textbox">
+        <label for="account">Select Account: </label>
+        <select name="account" required>
+            {% for account in all_acc1 %}
+                <option value="{{ account.account_id }}">
+                    {{ account.account_type }} - Balance: $. {{ account.balance }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <div class="textbox">
+        <label for="amount">Amount: Rs. </label>
+        <input type="number" name="amount" value="" required placeholder="Enter Amount" autocomplete="off">
+    </div>
+    <br>
+    <label class="radio-inline">
+      <input type="radio" value="withdraw" name="option"><b>Withdraw</b>
+    </label>
+    <label class="radio-inline">
+      <input type="radio" value="deposit" name="option"><b>Deposit</b>
+    </label>
+       <input type="hidden" id="email" name="email">
+    <input class="btn" type="submit" value="Proceed">
+</form>
+<script>
+    // Get email from localStorage and set it as the value for the hidden email field
+    var email = localStorage.getItem("email");
+    if (email) {
+        document.getElementById("email").value = email;
+    }
+</script>
 </div>
 </body>
 </html>
