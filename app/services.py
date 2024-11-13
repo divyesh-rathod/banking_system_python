@@ -2,6 +2,7 @@ from .models import Customer, Account
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import joinedload
 from app.database import db
+import hashlib
 import logging
 logger = logging.getLogger(__name__)
 
@@ -93,4 +94,13 @@ def update_account_balance(account_id, new_balance):
         logger.exception(f"Error updating account balance for account_id {account_id}: {e}")
         db.session.rollback()
         return False
+    
+
+def hash_password(password: str) -> str:
+# Create a SHA-256 hash object
+    sha256 = hashlib.sha256()
+    # Update the hash object with the password encoded to bytes
+    sha256.update(password.encode('utf-8'))
+    # Return the hexadecimal representation of the hashed password
+    return sha256.hexdigest()
 

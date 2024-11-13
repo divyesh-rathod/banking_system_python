@@ -25,3 +25,573 @@
 2024-11-12 01:26:47,862 - INFO - 127.0.0.1 - - [12/Nov/2024 01:26:47] "POST /do-transciction HTTP/1.1" 200 -
 2024-11-12 01:26:47,904 - INFO - 127.0.0.1 - - [12/Nov/2024 01:26:47] "[36mGET /static/styles/style7.css HTTP/1.1[0m" 304 -
 2024-11-12 01:26:48,096 - INFO - 127.0.0.1 - - [12/Nov/2024 01:26:48] "[36mGET /static/styles/img7.jpg HTTP/1.1[0m" 304 -
+2024-11-12 11:59:29,961 - INFO - Logging is set up.
+2024-11-12 11:59:30,049 - INFO - Flask app initialized.
+2024-11-12 11:59:30,057 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 11:59:30,058 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:01:21,501 - INFO - Starting report generation.
+2024-11-12 12:01:21,501 - ERROR - Exception on /report [POST]
+Traceback (most recent call last):
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\carleton\secure system engineering\final project\sorce codes\banking_system_python\app\routes.py", line 216, in generate_report
+    total_downtime = datetime.timedelta(0)
+                     ^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'timedelta'
+2024-11-12 12:01:21,534 - INFO - 127.0.0.1 - - [12/Nov/2024 12:01:21] "[35m[1mPOST /report HTTP/1.1[0m" 500 -
+2024-11-12 12:07:50,909 - INFO - Logging is set up.
+2024-11-12 12:07:50,980 - INFO - Flask app initialized.
+2024-11-12 12:07:50,986 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 12:07:50,987 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:08:05,862 - INFO - Starting report generation.
+2024-11-12 12:08:05,863 - ERROR - Log file not found. Ensure 'app.log' exists in the correct directory.
+2024-11-12 12:08:05,864 - INFO - 127.0.0.1 - - [12/Nov/2024 12:08:05] "[33mPOST /report HTTP/1.1[0m" 404 -
+2024-11-12 12:09:23,299 - INFO - Logging is set up.
+2024-11-12 12:09:23,357 - INFO - Flask app initialized.
+2024-11-12 12:09:23,364 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 12:09:23,365 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:09:28,753 - INFO - Starting report generation.
+2024-11-12 12:09:28,763 - ERROR - An error occurred during log file parsing.
+Traceback (most recent call last):
+  File "E:\carleton\secure system engineering\final project\sorce codes\banking_system_python\app\routes.py", line 233, in generate_report
+    current_timestamp = datetime.datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M:%S')
+                        ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
+2024-11-12 12:09:28,766 - INFO - 127.0.0.1 - - [12/Nov/2024 12:09:28] "[35m[1mPOST /report HTTP/1.1[0m" 500 -
+2024-11-12 12:11:18,290 - INFO - Logging is set up.
+2024-11-12 12:11:18,354 - INFO - Flask app initialized.
+2024-11-12 12:11:18,361 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 12:11:18,361 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:11:22,993 - INFO - Starting report generation.
+2024-11-12 12:11:23,030 - ERROR - An error occurred during log file parsing.
+Traceback (most recent call last):
+  File "E:\carleton\secure system engineering\final project\sorce codes\banking_system_python\app\routes.py", line 240, in generate_report
+    if time_difference > datetime.timedelta(minutes=2):
+                         ^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'timedelta'
+2024-11-12 12:11:23,035 - INFO - 127.0.0.1 - - [12/Nov/2024 12:11:23] "[35m[1mPOST /report HTTP/1.1[0m" 500 -
+2024-11-12 12:12:21,828 - INFO - Logging is set up.
+2024-11-12 12:12:21,882 - INFO - Flask app initialized.
+2024-11-12 12:12:21,890 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 12:12:21,890 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:12:26,534 - INFO - Starting report generation.
+2024-11-12 12:12:26,556 - DEBUG - Downtime detected. Time difference: 10:32:41
+2024-11-12 12:12:26,557 - DEBUG - Downtime detected. Time difference: 0:06:29
+2024-11-12 12:12:26,557 - INFO - MTBF calculated successfully. MTBF: 319.5833333333333 minutes.
+2024-11-12 12:12:26,558 - INFO - 127.0.0.1 - - [12/Nov/2024 12:12:26] "POST /report HTTP/1.1" 200 -
+2024-11-12 12:27:32,518 - INFO - Logging is set up.
+2024-11-12 12:27:32,570 - INFO - Flask app initialized.
+2024-11-12 12:27:32,576 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 12:27:32,577 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:35:05,538 - INFO - Logging is set up.
+2024-11-12 12:35:05,595 - INFO - Flask app initialized.
+2024-11-12 12:35:05,603 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 12:35:05,603 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:35:17,978 - INFO - 127.0.0.1 - - [12/Nov/2024 12:35:17] "GET / HTTP/1.1" 200 -
+2024-11-12 12:35:18,083 - INFO - 127.0.0.1 - - [12/Nov/2024 12:35:18] "[36mGET /static/styles/style1.css HTTP/1.1[0m" 304 -
+2024-11-12 12:35:18,123 - INFO - 127.0.0.1 - - [12/Nov/2024 12:35:18] "[36mGET /static/styles/img1.jpg HTTP/1.1[0m" 304 -
+2024-11-12 12:35:19,118 - INFO - 127.0.0.1 - - [12/Nov/2024 12:35:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-12 12:35:31,169 - INFO - 127.0.0.1 - - [12/Nov/2024 12:35:31] "GET /new-user HTTP/1.1" 200 -
+2024-11-12 12:35:31,210 - INFO - 127.0.0.1 - - [12/Nov/2024 12:35:31] "[36mGET /static/styles/style2.css HTTP/1.1[0m" 304 -
+2024-11-12 12:35:31,372 - INFO - 127.0.0.1 - - [12/Nov/2024 12:35:31] "[36mGET /static/styles/img2.jpg HTTP/1.1[0m" 304 -
+2024-11-12 12:36:33,458 - INFO - Logging is set up.
+2024-11-12 12:36:33,511 - INFO - Flask app initialized.
+2024-11-12 12:36:33,518 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 12:36:33,518 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:36:49,414 - INFO - 127.0.0.1 - - [12/Nov/2024 12:36:49] "GET / HTTP/1.1" 200 -
+2024-11-12 12:36:49,487 - INFO - 127.0.0.1 - - [12/Nov/2024 12:36:49] "[36mGET /static/styles/style1.css HTTP/1.1[0m" 304 -
+2024-11-12 12:36:49,669 - INFO - 127.0.0.1 - - [12/Nov/2024 12:36:49] "[36mGET /static/styles/img1.jpg HTTP/1.1[0m" 304 -
+2024-11-12 12:39:25,866 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:39:25] code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06eZZ\x00\x00\x00')
+2024-11-12 12:39:25,867 - INFO - 127.0.0.1 - - [12/Nov/2024 12:39:25] "[31m[1m\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03ãÄÀqãùª\\\x0dÊ\x0cq|u\x86_\x13æhòôÎJÏØ³\x1a\x05\x0b\x0dnµ JÜ\x96¼\x8dvc}^QV©\x94H3¯«¥~cuRn\x14\x81iï0\x9fcw*\x00 ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06eZZ\x00\x00\x00[0m" 400 -
+2024-11-12 12:39:25,868 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:39:25] code 400, message Bad request version ('ÈDú\x84ÀÏÞÞE')
+2024-11-12 12:39:25,870 - INFO - 127.0.0.1 - - [12/Nov/2024 12:39:25] "[31m[1m\x16\x03\x01\x06²\x01\x00\x06®\x03\x03\x89¦ï]6cû\x9d\x16\x93\x84¼Ã\x9e\x04\x0dfónQâíÙi\x85ç\x7flÑZ\x05¿ ¹d'¨¾zAéø«Å\x02:ä\x0boCvè\x00Â´Vë¤ö5¬Qp\x86\x89\x00 ZZ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06E\x9a\x9a\x00\x00\x00\x10\x00\x0e\x00\x0c\x02h2\x08http/1.1\x00\x12\x00\x00Di\x00\x05\x00\x03\x02h2\x00\x0d\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x00\x00\x0e\x00\x0c\x00\x00\x09localhostÿ\x01\x00\x01\x00\x00+\x00\x07\x06ZZ\x03\x04\x03\x03\x00\x1b\x00\x03\x02\x00\x02\x00\x17\x00\x00þ\x0d\x00º\x00\x00\x01\x00\x01Q\x00 ;~&\x19\x84Ë\x95ò\x7f\x8ayµÒï$%\x92Ùè)\x93¦ïN\x90)\x80+ ¬H\x1a\x00\x90\x91ßïÛ\x83Íóë\\\x07\x80òþ4è ÈDú\x84ÀÏÞÞE\x1c[0m" 400 -
+2024-11-12 12:39:26,118 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:39:26] code 400, message Bad request version ('*éçEM²\x90ùØ\x1b,d¦\x84¶\x03\x14\x03ð&\x8cÂ`æ')
+2024-11-12 12:39:26,120 - INFO - 127.0.0.1 - - [12/Nov/2024 12:39:26] "[31m[1m\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03/<|ñ©\x80\x90õ3m_\x00\x80\x8fÒ\x98fqæ\x12ö\x88<ÐÖ¾ô\x13h öþ U`4Acâ\x0c*éçEM²\x90ùØ\x1b,d¦\x84¶\x03\x14\x03ð&\x8cÂ`æ[0m" 400 -
+2024-11-12 12:39:26,180 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:39:26] code 400, message Bad request version ('\x93\x86\x06¼·ÑV\x9bèy²8ÁC"\x84Ea\x14{´\x9cp<z>\x94\x06¥µ\x92\x07\x15$')
+2024-11-12 12:39:26,181 - INFO - 127.0.0.1 - - [12/Nov/2024 12:39:26] "[31m[1m\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03óG²OØ*n­\x8f8ÎÙ\x9aú\x83ëkÞÜ^¤ó±lB\x0bI3v(\x8dû µä¯=ÇS\x15\x15\\'o÷Nd\x0cÅ¡@zã\x10.\x0eW\x0eãÒ^\x0f\x87\x03s\x00 êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x85JJ\x00\x00\x00\x0d\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01þ\x0d\x00ú\x00\x00\x01\x00\x01s\x00 XunY¡6ÛÆ\x02?Íÿ\x07JGú;\\Ô\x90\x94Ã±¨í\x06\x9fQ\x1dçFp\x00ÐAÿ\x86½\x8bÇÑ©2\x11³¬h$û\x9a_7 \x00·öá\x8c:\x94\x9c,ú\x8b¨_ÜÊ\\}\x0fihf¯Ì\x0c\x8dêt\x86xS×Äµ\x19|S´AøÓÔ§\x01¡\\#n\x04µ\x85\x8bÏ$Ö\x0dÄ\x9a\x9e`|³\x1eanÔ!ñ\x16?\x96Ý¬SßgOÈc\x1e\x06\x1a\x08^ü¦\x8aHN¿%è\x90:¦\x08HÚ¿ç\x93GhY q\x84Þ+$(\x9b£\x04Æ\x92\x95.<\x19ø\x05J\x81\\âèxc\x16\x98:2)o \x9bIÍz%´º.\x9b\x11\x06}:°\x14b\x89Aç\x0bzKi\x0b#³#áº#aTXT{¦ä»\x04j\x03ÅþR"É/u\x99´ÖÐÕÁ\x003\x04ï\x04íúú\x00\x01\x00c\x99\x04À\x1epÑ\x95²êx\x09¬hçT\x10YU\x1a\x92~]\x08Ç*\x0e\x0e\x83\x02O<\x02îÖ7\x83Rd­êG\x94ñ\x0b\x9c¦§ÞTÃ¸\x9cyg\x83$ÿ`c\x99Q\x16øuE \x93\x86\x06¼·ÑV\x9bèy²8ÁC"\x84Ea\x14{´\x9cp<z>\x94\x06¥µ\x92\x07\x15$ [0m" 400 -
+2024-11-12 12:39:26,181 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:39:26] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03')
+2024-11-12 12:39:26,183 - INFO - 127.0.0.1 - - [12/Nov/2024 12:39:26] "[31m[1m\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03 \x97\x84\x977¼°ÓLÂ\x9f\x9d![0m" 400 -
+2024-11-12 12:39:26,428 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:39:26] code 400, message Bad request version ('¥¬û§¤Ô')
+2024-11-12 12:39:26,430 - INFO - 127.0.0.1 - - [12/Nov/2024 12:39:26] "[31m[1m\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03\x94t\x1c\x0d½\x86ö\x8a¤vK\x1f¥¬û§¤Ô[0m" 400 -
+2024-11-12 12:43:11,100 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:43:11] code 400, message Bad request version ('Ò\x04\x89ñ:."zjy')
+2024-11-12 12:43:11,101 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:43:11] code 400, message Bad request version ('\x00°ü@Jâ·')
+2024-11-12 12:43:11,101 - INFO - 127.0.0.1 - - [12/Nov/2024 12:43:11] "[31m[1m\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03ª \x14´\x9aBp(So3\x83-\x9cíÌ#JQ\x09caðvÃ½\x06ÇÉ}\x05) +Ý°\x83J\x9dúÊ=ÚJ~\x81\x01.u\x80`\x9a\x8e:4{¦\x17ö\x1fØª\x15ô?\x00 **\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06e\x8a\x8a\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00\x12\x00\x00ÿ\x01\x00\x01\x00\x00\x10\x00\x0e\x00\x0c\x02h2\x08http/1.1\x00\x0b\x00\x02\x01\x00Di\x00\x05\x00\x03\x02h2\x00\x00\x00\x0e\x00\x0c\x00\x00\x09localhost\x00-\x00\x02\x01\x01\x00+\x00\x07\x06\x1a\x1a\x03\x04\x03\x03\x00\x0d\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x17\x00\x00þ\x0d\x00Ú\x00\x00\x01\x00\x01ë\x00 ýJ k«å\x06Ä{$näÂ\x16ð<iÙ¹*±DñÇÓ¨º\x90\x8c­ã{\x00°\x15ÕÆâ\x05ÏëÅÇ\x11\x84&cªÇ\x9cmÿ\x9aÎ¥vÒ:£ø5\x11\x96$\x8c§&1ÓYq\x08 Eh\x03\x09IZ\x90¤¶\x09\x94YÖ¿Ã>\x94DZ pI\\ÖC\x1aÑB ¶yáÕb\x85ø\x8b\x8f\x8b\x035\x9e\x8ag2Bºçc²l¾©-j½\x8a\x86Ð!Á~\x8aû\x01Sÿ,m\x92'ÍÜ\x81\x17s\x18W¬\x906!p\x04zT\x1f»ñkhC\x9f#î\x02êõ\x8aJ)\x17ý\x01®l\x04\x8cÄþC\x17ñ\x0f\x92\x8e,Dº²Ú\x9eª*õ\x18]\x0cò\x1b±aÄ@¥«\x95\x00#\x00\x00\x003\x04ï\x04íªª\x00\x01\x00c\x99\x04À[¡\x92Æ®\x02ßÔÁ\x0dWK\x86:\x99Âã§¢\x7f\x8f\x9f¥¬\x85\x1dÒ\x04\x89ñ:."zjy[0m" 400 -
+2024-11-12 12:43:11,102 - INFO - 127.0.0.1 - - [12/Nov/2024 12:43:11] "[31m[1m\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03\x95' 1Ë@\x89ÇVæã5®ÅK\x18¥î,\x1e\x90¢X6î\x8c´\x03¢Û±\x09 (ê]¸y\x92Éò:Z\x1aÖ!\x1fË8V\x7f¸ÈÙ\x0cf!>p\x1dèí°Ï@\x00 ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06e\x8a\x8a\x00\x00\x00\x1b\x00\x03\x02\x00\x02ÿ\x01\x00\x01\x00\x00\x10\x00\x0e\x00\x0c\x02h2\x08http/1.1\x00\x0b\x00\x02\x01\x00Di\x00\x05\x00\x03\x02h2\x00#\x00\x00\x00\x17\x00\x00þ\x0d\x00Ú\x00\x00\x01\x00\x01}\x00 \x9d×\x8eQ1ÆÍ\x9al@üÿ s³y\x067Éý6)uÛ¸¨èr\x94>©\x0c\x00°ü@Jâ·[0m" 400 -
+2024-11-12 12:43:11,365 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:43:11] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06²\x01\x00\x06®\x03\x03\x9e¬\x05ê¯\x1aQ\x0e#@ÍHXGá\x92\x0f\x13^)ö³G*\x01\x01õ\x96Ç\x87×\x00')
+2024-11-12 12:43:11,367 - INFO - 127.0.0.1 - - [12/Nov/2024 12:43:11] "[31m[1m\x16\x03\x01\x06²\x01\x00\x06®\x03\x03\x9e¬\x05ê¯\x1aQ\x0e#@ÍHXGá\x92\x0f\x13^)ö³G*\x01\x01õ\x96Ç\x87×\x00 \x98R©\x84ÌÍö¾8\x7f\x8a4ý\x180zÂ\x8fg\x97àÓÍÜµy\x83ÓA[0m" 400 -
+2024-11-12 12:43:11,410 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:43:11] code 400, message Bad request version ('6Q°5q\x9a\x1aÓ(Ø\x10Gg[sã×\x82ï\x04tÛÙl\x90u\x18C¬\x90®÷\x17\x07d\x9aÆYg<\x97\x8b\x98ç,¹è\x8cH°')
+2024-11-12 12:43:11,411 - INFO - 127.0.0.1 - - [12/Nov/2024 12:43:11] "[31m[1m\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03BÄg²Ï\x00¦8\x1e>TYÂ\x90\x9b\x95\x8ek\x9e\x84ñ\x1c¨0Ã¡2SLpIN ¸¾|\x8c62^Ñ°\x102Äí\x90 X\x92]ç3/xJMY¤ùÎe\x0b\x1b\x93\x00 úú\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06e\x9a\x9a\x00\x00\x003\x04ï\x04í\x8a\x8a\x00\x01\x00c\x99\x04Àº\x1eÿ\\\x1d³÷\x0f$:6Û¯ÎP\x9b<\x0c2í¢\x97D\x1aê^\x8aHiÇÕQ\x07µ8»ð³$¶\x1b\x00#\x856Q°5q\x9a\x1aÓ(Ø\x10Gg[sã×\x82ï\x04tÛÙl\x90u\x18C¬\x90®÷\x17\x07d\x9aÆYg<\x97\x8b\x98ç,¹è\x8cH°[0m" 400 -
+2024-11-12 12:43:11,412 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:43:11] code 400, message Bad request version ('B5\x84\x97')
+2024-11-12 12:43:11,414 - INFO - 127.0.0.1 - - [12/Nov/2024 12:43:11] "[31m[1m\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03\x91Ss-óè($³KXß¡iRv)ÙS¡º\x92äÞ_Ñ<ü@!\x92~ p\x17E\x9eC÷¢µ|É\x83Ô\x18 \x96f\x89NBp\x8dT\x87Ï¬\x19å\x07\x18ò\x1c\x0c\x00 úú\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x85JJ\x00\x00\x00-\x00\x02\x01\x01\x00\x17\x00\x00\x00\x00\x00\x0e\x00\x0c\x00\x00\x09localhostDi\x00\x05\x00\x03\x02h2\x00\x12\x00\x00\x00\x0b\x00\x02\x01\x00þ\x0d\x00ú\x00\x00\x01\x00\x01u\x00 B5\x84\x97\x1f[0m" 400 -
+2024-11-12 12:43:11,675 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:43:11] code 400, message Bad request version ('îî\x10¡ÖI\x00')
+2024-11-12 12:43:11,676 - INFO - 127.0.0.1 - - [12/Nov/2024 12:43:11] "[31m[1m\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03bÏ:~Ë*µ§È\x13Á\x04l¥\x88lQ'Ù\x17\x8beQ¼\x1aß\x99\x86g\x9fùß \x87bx"ÒZ\x07&K*\x91å.Id9à\x87\x03'-wd\x9e£\x1cîî\x10¡ÖI\x00 [0m" 400 -
+2024-11-12 12:43:16,823 - ERROR - 127.0.0.1 - - [12/Nov/2024 12:43:16] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00½\x01\x00\x00¹\x03\x03g3\x93´£\x02¹\x8d»Jçlé\x98')
+2024-11-12 12:43:16,824 - INFO - 127.0.0.1 - - [12/Nov/2024 12:43:16] "[31m[1m\x16\x03\x03\x00½\x01\x00\x00¹\x03\x03g3\x93´£\x02¹\x8d»Jçlé\x98\x1eW¶¨Hèù+»\x87\x84\x866ÜÞ\x8adw\x00\x00&À,À+À0À/À$À#À(À'À[0m" 400 -
+2024-11-12 12:45:12,791 - INFO - Logging is set up.
+2024-11-12 12:45:12,845 - INFO - Flask app initialized.
+2024-11-12 12:46:07,698 - INFO - Logging is set up.
+2024-11-12 12:46:07,753 - INFO - Flask app initialized.
+2024-11-12 12:46:07,784 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on https://localhost:5000
+2024-11-12 12:46:07,785 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 12:55:06,940 - INFO - Logging is set up.
+2024-11-12 12:55:07,004 - INFO - Flask app initialized.
+2024-11-12 12:55:07,016 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on https://localhost:5000
+2024-11-12 12:55:07,017 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 14:04:12,846 - INFO - Logging is set up.
+2024-11-12 14:04:13,105 - INFO - Flask app initialized.
+2024-11-12 14:04:13,169 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on https://localhost:5000
+2024-11-12 14:04:13,170 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 14:05:11,118 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:11] "GET / HTTP/1.1" 200 -
+2024-11-12 14:05:11,200 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:11] "GET /static/styles/style1.css HTTP/1.1" 200 -
+2024-11-12 14:05:13,826 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:13] "GET /static/styles/img1.jpg HTTP/1.1" 200 -
+2024-11-12 14:05:13,845 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-12 14:05:42,994 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:42] "GET / HTTP/1.1" 200 -
+2024-11-12 14:05:43,073 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:43] "GET /static/styles/style1.css HTTP/1.1" 200 -
+2024-11-12 14:05:43,271 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-12 14:05:43,285 - INFO - 127.0.0.1 - - [12/Nov/2024 14:05:43] "GET /static/styles/img1.jpg HTTP/1.1" 200 -
+2024-11-12 14:06:14,466 - INFO - 127.0.0.1 - - [12/Nov/2024 14:06:14] "GET /new-user HTTP/1.1" 200 -
+2024-11-12 14:06:14,749 - INFO - 127.0.0.1 - - [12/Nov/2024 14:06:14] "GET /static/styles/style2.css HTTP/1.1" 200 -
+2024-11-12 14:06:15,133 - INFO - 127.0.0.1 - - [12/Nov/2024 14:06:15] "GET /static/styles/img2.jpg HTTP/1.1" 200 -
+2024-11-12 14:07:03,273 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:03] "GET /existing-user HTTP/1.1" 200 -
+2024-11-12 14:07:03,322 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:03] "GET /static/styles/style3.css HTTP/1.1" 200 -
+2024-11-12 14:07:04,006 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:04] "GET /static/styles/img3.jpg HTTP/1.1" 200 -
+2024-11-12 14:07:11,244 - INFO - Attempting to log in existing customer.
+2024-11-12 14:07:11,455 - INFO - Customer login successful.
+2024-11-12 14:07:11,507 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:11] "POST /customer-details HTTP/1.1" 200 -
+2024-11-12 14:07:11,538 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:11] "GET /static/styles/style4.css HTTP/1.1" 200 -
+2024-11-12 14:07:12,308 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:12] "GET /static/styles/img4.jpg HTTP/1.1" 200 -
+2024-11-12 14:07:29,327 - INFO - Fetching accounts for email: joy@yopmail.com
+2024-11-12 14:07:29,328 - INFO - Attempting to retrieve accounts for customer with email: joy@yopmail.com
+2024-11-12 14:07:29,372 - INFO - Successfully retrieved accounts for email: joy@yopmail.com
+2024-11-12 14:07:29,373 - DEBUG - Accounts retrieved for email joy@yopmail.com: [{'account_id': UUID('1eac8f64-57cf-4fe8-bb65-762adc19c279'), 'account_type': 'SAVINGS', 'balance': 11000.0, 'created_at': datetime.datetime(2024, 11, 12, 6, 26, 36, 636432), 'status': True}]
+2024-11-12 14:07:29,385 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:29] "GET /do-transciction?email=joy@yopmail.com HTTP/1.1" 200 -
+2024-11-12 14:07:29,589 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:29] "GET /static/styles/style7.css HTTP/1.1" 200 -
+2024-11-12 14:07:30,146 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:30] "GET /static/styles/img7.jpg HTTP/1.1" 200 -
+2024-11-12 14:07:39,798 - DEBUG - Form data received: ImmutableMultiDict([('account', '1eac8f64-57cf-4fe8-bb65-762adc19c279'), ('amount', '500'), ('option', 'withdraw'), ('email', 'joy@yopmail.com')])
+2024-11-12 14:07:39,799 - INFO - Processing transaction for email: joy@yopmail.com, account: 1eac8f64-57cf-4fe8-bb65-762adc19c279, amount: 500.0, option: withdraw
+2024-11-12 14:07:39,800 - INFO - Attempting to retrieve accounts for customer with email: joy@yopmail.com
+2024-11-12 14:07:39,807 - INFO - Successfully retrieved accounts for email: joy@yopmail.com
+2024-11-12 14:07:39,808 - INFO - Attempting to retrieve account by account_id: 1eac8f64-57cf-4fe8-bb65-762adc19c279
+2024-11-12 14:07:39,814 - INFO - Account found for account_id 1eac8f64-57cf-4fe8-bb65-762adc19c279
+2024-11-12 14:07:39,815 - INFO - Withdrew Rs. 500.0 from AccountType.SAVINGS account with ID 1eac8f64-57cf-4fe8-bb65-762adc19c279. New balance: 10500.0
+2024-11-12 14:07:39,817 - INFO - Attempting to update balance for account_id 1eac8f64-57cf-4fe8-bb65-762adc19c279 to 10500.0
+2024-11-12 14:07:39,845 - INFO - Successfully updated balance for account_id 1eac8f64-57cf-4fe8-bb65-762adc19c279 to 10500.0
+2024-11-12 14:07:39,851 - INFO - Updated balance for account ID 1eac8f64-57cf-4fe8-bb65-762adc19c279 to 10500.0
+2024-11-12 14:07:39,852 - INFO - Attempting to retrieve accounts for customer with email: joy@yopmail.com
+2024-11-12 14:07:39,858 - INFO - Successfully retrieved accounts for email: joy@yopmail.com
+2024-11-12 14:07:39,862 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:39] "POST /do-transciction HTTP/1.1" 200 -
+2024-11-12 14:07:40,063 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:40] "GET /static/styles/style7.css HTTP/1.1" 200 -
+2024-11-12 14:07:40,518 - INFO - 127.0.0.1 - - [12/Nov/2024 14:07:40] "[36mGET /static/styles/img7.jpg HTTP/1.1[0m" 304 -
+2024-11-12 14:36:23,501 - INFO - Logging is set up.
+2024-11-12 14:36:23,574 - INFO - Flask app initialized.
+2024-11-12 14:36:23,587 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on https://localhost:5000
+2024-11-12 14:36:23,588 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 14:36:27,659 - INFO - 127.0.0.1 - - [12/Nov/2024 14:36:27] "GET / HTTP/1.1" 200 -
+2024-11-12 14:36:27,927 - INFO - 127.0.0.1 - - [12/Nov/2024 14:36:27] "GET /static/styles/style1.css HTTP/1.1" 200 -
+2024-11-12 14:36:29,137 - INFO - 127.0.0.1 - - [12/Nov/2024 14:36:29] "GET /static/styles/img1.jpg HTTP/1.1" 200 -
+2024-11-12 14:36:36,261 - INFO - 127.0.0.1 - - [12/Nov/2024 14:36:36] "GET /new-user HTTP/1.1" 200 -
+2024-11-12 14:36:36,434 - INFO - 127.0.0.1 - - [12/Nov/2024 14:36:36] "GET /static/styles/style2.css HTTP/1.1" 200 -
+2024-11-12 14:36:36,908 - INFO - 127.0.0.1 - - [12/Nov/2024 14:36:36] "GET /static/styles/img2.jpg HTTP/1.1" 200 -
+2024-11-12 14:37:44,940 - INFO - Starting process to create a new customer.
+2024-11-12 14:37:44,960 - INFO - Customer added to database successfully.
+2024-11-12 14:37:46,514 - INFO - 127.0.0.1 - - [12/Nov/2024 14:37:46] "POST /customer-details HTTP/1.1" 200 -
+2024-11-12 14:37:46,603 - INFO - 127.0.0.1 - - [12/Nov/2024 14:37:46] "GET /static/styles/style4.css HTTP/1.1" 200 -
+2024-11-12 14:37:47,239 - INFO - 127.0.0.1 - - [12/Nov/2024 14:37:47] "GET /static/styles/img4.jpg HTTP/1.1" 200 -
+2024-11-12 14:37:59,602 - INFO - Rendering account creation form
+2024-11-12 14:37:59,666 - INFO - 127.0.0.1 - - [12/Nov/2024 14:37:59] "GET /add-account HTTP/1.1" 200 -
+2024-11-12 14:38:05,864 - INFO - Attempting to create a new account for customer with email: dummy@yopmail.com
+2024-11-12 14:38:05,865 - INFO - Attempting to retrieve customer ID for email: dummy@yopmail.com
+2024-11-12 14:38:05,883 - INFO - Customer ID for email dummy@yopmail.com found: 985c9524-d980-4ac0-8f0e-dbfa970d34a9
+2024-11-12 14:38:05,906 - INFO - Account successfully created for customer dummy@yopmail.com. Account ID: 998e1529-38c2-4fc1-af7f-3c48877c8751
+2024-11-12 14:38:05,910 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:05] "POST /add-account HTTP/1.1" 200 -
+2024-11-12 14:38:06,108 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:06] "GET /static/styles/style4.css HTTP/1.1" 200 -
+2024-11-12 14:38:06,561 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:06] "GET /static/styles/img4.jpg HTTP/1.1" 200 -
+2024-11-12 14:38:10,696 - INFO - Fetching accounts for email: dummy@yopmail.com
+2024-11-12 14:38:10,696 - INFO - Attempting to retrieve accounts for customer with email: dummy@yopmail.com
+2024-11-12 14:38:10,708 - INFO - Successfully retrieved accounts for email: dummy@yopmail.com
+2024-11-12 14:38:10,709 - DEBUG - Accounts retrieved for email dummy@yopmail.com: [{'account_id': UUID('998e1529-38c2-4fc1-af7f-3c48877c8751'), 'account_type': 'SAVINGS', 'balance': 5000.0, 'created_at': datetime.datetime(2024, 11, 12, 19, 38, 5, 884233), 'status': True}]
+2024-11-12 14:38:10,717 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:10] "GET /do-transciction?email=dummy@yopmail.com HTTP/1.1" 200 -
+2024-11-12 14:38:11,425 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:11] "GET /static/styles/style7.css HTTP/1.1" 200 -
+2024-11-12 14:38:11,607 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:11] "GET /static/styles/img7.jpg HTTP/1.1" 200 -
+2024-11-12 14:38:24,753 - DEBUG - Form data received: ImmutableMultiDict([('account', '998e1529-38c2-4fc1-af7f-3c48877c8751'), ('amount', '5000'), ('option', 'deposit'), ('email', 'dummy@yopmail.com')])
+2024-11-12 14:38:24,755 - INFO - Processing transaction for email: dummy@yopmail.com, account: 998e1529-38c2-4fc1-af7f-3c48877c8751, amount: 5000.0, option: deposit
+2024-11-12 14:38:24,756 - INFO - Attempting to retrieve accounts for customer with email: dummy@yopmail.com
+2024-11-12 14:38:24,763 - INFO - Successfully retrieved accounts for email: dummy@yopmail.com
+2024-11-12 14:38:24,764 - INFO - Attempting to retrieve account by account_id: 998e1529-38c2-4fc1-af7f-3c48877c8751
+2024-11-12 14:38:24,770 - INFO - Account found for account_id 998e1529-38c2-4fc1-af7f-3c48877c8751
+2024-11-12 14:38:24,771 - INFO - Deposited Rs. 5000.0 to AccountType.SAVINGS account with ID 998e1529-38c2-4fc1-af7f-3c48877c8751. New balance: 10000.0
+2024-11-12 14:38:24,772 - INFO - Attempting to update balance for account_id 998e1529-38c2-4fc1-af7f-3c48877c8751 to 10000.0
+2024-11-12 14:38:24,784 - INFO - Successfully updated balance for account_id 998e1529-38c2-4fc1-af7f-3c48877c8751 to 10000.0
+2024-11-12 14:38:24,787 - INFO - Updated balance for account ID 998e1529-38c2-4fc1-af7f-3c48877c8751 to 10000.0
+2024-11-12 14:38:24,788 - INFO - Attempting to retrieve accounts for customer with email: dummy@yopmail.com
+2024-11-12 14:38:24,795 - INFO - Successfully retrieved accounts for email: dummy@yopmail.com
+2024-11-12 14:38:24,796 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:24] "POST /do-transciction HTTP/1.1" 200 -
+2024-11-12 14:38:25,021 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:25] "GET /static/styles/style7.css HTTP/1.1" 200 -
+2024-11-12 14:38:25,438 - INFO - 127.0.0.1 - - [12/Nov/2024 14:38:25] "[36mGET /static/styles/img7.jpg HTTP/1.1[0m" 304 -
+2024-11-12 14:44:47,783 - INFO - Fetching accounts for email: dummy@yopmail.com
+2024-11-12 14:44:47,783 - INFO - Attempting to retrieve accounts for customer with email: dummy@yopmail.com
+2024-11-12 14:44:47,787 - INFO - Successfully retrieved accounts for email: dummy@yopmail.com
+2024-11-12 14:44:47,787 - DEBUG - Accounts retrieved for email dummy@yopmail.com: [{'account_id': UUID('998e1529-38c2-4fc1-af7f-3c48877c8751'), 'account_type': 'SAVINGS', 'balance': 10000.0, 'created_at': datetime.datetime(2024, 11, 12, 19, 38, 5, 884233), 'status': True}]
+2024-11-12 14:44:47,789 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:47] "GET /do-transciction?email=dummy@yopmail.com HTTP/1.1" 200 -
+2024-11-12 14:44:49,618 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:49] "GET /static/styles/style7.css HTTP/1.1" 200 -
+2024-11-12 14:44:50,321 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:50] "GET /static/styles/img7.jpg HTTP/1.1" 200 -
+2024-11-12 14:44:52,576 - INFO - Rendering account creation form
+2024-11-12 14:44:52,577 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:52] "GET /add-account HTTP/1.1" 200 -
+2024-11-12 14:44:55,649 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:55] "GET /new-user HTTP/1.1" 200 -
+2024-11-12 14:44:56,004 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:56] "GET /static/styles/style2.css HTTP/1.1" 200 -
+2024-11-12 14:44:56,634 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:56] "GET /static/styles/img2.jpg HTTP/1.1" 200 -
+2024-11-12 14:44:57,472 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:57] "GET / HTTP/1.1" 200 -
+2024-11-12 14:44:58,091 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:58] "GET /static/styles/style1.css HTTP/1.1" 200 -
+2024-11-12 14:44:58,340 - INFO - 127.0.0.1 - - [12/Nov/2024 14:44:58] "GET /static/styles/img1.jpg HTTP/1.1" 200 -
+2024-11-12 14:45:01,599 - INFO - 127.0.0.1 - - [12/Nov/2024 14:45:01] "GET /existing-user HTTP/1.1" 200 -
+2024-11-12 14:45:01,846 - INFO - 127.0.0.1 - - [12/Nov/2024 14:45:01] "GET /static/styles/style3.css HTTP/1.1" 200 -
+2024-11-12 14:45:02,248 - INFO - 127.0.0.1 - - [12/Nov/2024 14:45:02] "GET /static/styles/img3.jpg HTTP/1.1" 200 -
+2024-11-12 14:45:22,568 - INFO - Attempting to log in existing customer.
+2024-11-12 14:45:22,574 - WARNING - Customer login failed due to incorrect email or password.
+2024-11-12 14:45:22,577 - INFO - 127.0.0.1 - - [12/Nov/2024 14:45:22] "POST /customer-details HTTP/1.1" 200 -
+2024-11-12 14:45:22,812 - INFO - 127.0.0.1 - - [12/Nov/2024 14:45:22] "GET /static/styles/style3.css HTTP/1.1" 200 -
+2024-11-12 14:45:23,235 - INFO - 127.0.0.1 - - [12/Nov/2024 14:45:23] "[36mGET /static/styles/img3.jpg HTTP/1.1[0m" 304 -
+2024-11-12 14:46:15,222 - INFO - Attempting to log in existing customer.
+2024-11-12 14:46:15,224 - WARNING - Customer login failed due to incorrect email or password.
+2024-11-12 14:46:15,235 - INFO - 127.0.0.1 - - [12/Nov/2024 14:46:15] "POST /customer-details HTTP/1.1" 200 -
+2024-11-12 14:46:15,863 - INFO - 127.0.0.1 - - [12/Nov/2024 14:46:15] "GET /static/styles/style3.css HTTP/1.1" 200 -
+2024-11-12 14:46:17,217 - INFO - 127.0.0.1 - - [12/Nov/2024 14:46:17] "[36mGET /static/styles/img3.jpg HTTP/1.1[0m" 304 -
+2024-11-12 14:53:45,943 - INFO - Logging is set up.
+2024-11-12 14:53:46,007 - INFO - Flask app initialized.
+2024-11-12 14:53:46,019 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on https://localhost:5000
+2024-11-12 14:53:46,020 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 14:55:21,690 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:21] "GET / HTTP/1.1" 200 -
+2024-11-12 14:55:21,836 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:21] "GET /static/styles/style1.css HTTP/1.1" 200 -
+2024-11-12 14:55:21,993 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:21] "[36mGET /static/styles/img1.jpg HTTP/1.1[0m" 304 -
+2024-11-12 14:55:22,143 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:22] "GET / HTTP/1.1" 200 -
+2024-11-12 14:55:22,402 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:22] "GET /static/styles/style1.css HTTP/1.1" 200 -
+2024-11-12 14:55:24,631 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:24] "GET /static/styles/img1.jpg HTTP/1.1" 200 -
+2024-11-12 14:55:25,015 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:25] "GET /new-user HTTP/1.1" 200 -
+2024-11-12 14:55:25,058 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:25] "GET /static/styles/style2.css HTTP/1.1" 200 -
+2024-11-12 14:55:25,135 - INFO - 127.0.0.1 - - [12/Nov/2024 14:55:25] "GET /static/styles/img2.jpg HTTP/1.1" 200 -
+2024-11-12 14:56:30,344 - INFO - Starting process to create a new customer.
+2024-11-12 14:56:30,355 - ERROR - Error occurred while registering new customer.
+Traceback (most recent call last):
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\legacy.py", line 254, in execute
+    self._context = self._c.execute_unnamed(
+                    ~~~~~~~~~~~~~~~~~~~~~~~^
+        statement, vals=vals, oids=self._input_oids, stream=stream
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\core.py", line 715, in execute_unnamed
+    self.handle_messages(context)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\core.py", line 835, in handle_messages
+    raise context.error
+pg8000.exceptions.DatabaseError: {'S': 'ERROR', 'V': 'ERROR', 'C': '22001', 'M': 'value too long for type character varying(50)', 'F': 'varchar.c', 'L': '640', 'R': 'varchar'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\legacy.py", line 281, in execute
+    raise cls(msg)
+pg8000.dbapi.ProgrammingError: {'S': 'ERROR', 'V': 'ERROR', 'C': '22001', 'M': 'value too long for type character varying(50)', 'F': 'varchar.c', 'L': '640', 'R': 'varchar'}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\carleton\secure system engineering\final project\sorce codes\banking_system_python\app\routes.py", line 63, in customer_details
+    db.session.commit()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4352, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4487, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4448, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\legacy.py", line 281, in execute
+    raise cls(msg)
+sqlalchemy.exc.ProgrammingError: (pg8000.dbapi.ProgrammingError) {'S': 'ERROR', 'V': 'ERROR', 'C': '22001', 'M': 'value too long for type character varying(50)', 'F': 'varchar.c', 'L': '640', 'R': 'varchar'}
+[SQL: INSERT INTO customers (customer_id, first_name, password, last_name, date_of_birth, address, phone_number, email, role, created_at) VALUES (%s::UUID, %s::VARCHAR, %s::VARCHAR, %s::VARCHAR, %s::DATE, %s::VARCHAR, %s::VARCHAR, %s::VARCHAR, %s, %s::TIMESTAMP WITHOUT TIME ZONE)]
+[parameters: (UUID('3d66304f-3f67-4111-996b-60a24d382f68'), 'dummy1', '2d20bc4380b6f5e682f099bef4d457aa91714dc398a23568f1e84b5553ede607', 'account1', datetime.date(2024, 11, 6), 'dfg', '1234567890', 'dummy1@yopmail.com', 'CUSTOMER', datetime.datetime(2024, 11, 12, 19, 56, 30, 347689, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2024-11-12 14:56:32,165 - INFO - 127.0.0.1 - - [12/Nov/2024 14:56:32] "POST /customer-details HTTP/1.1" 200 -
+2024-11-12 14:56:32,228 - INFO - 127.0.0.1 - - [12/Nov/2024 14:56:32] "[36mGET /static/styles/style2.css HTTP/1.1[0m" 304 -
+2024-11-12 14:56:32,245 - INFO - 127.0.0.1 - - [12/Nov/2024 14:56:32] "[36mGET /static/styles/img2.jpg HTTP/1.1[0m" 304 -
+2024-11-12 15:09:31,106 - INFO - Starting process to create a new customer.
+2024-11-12 15:09:31,109 - ERROR - Error occurred while registering new customer.
+Traceback (most recent call last):
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\legacy.py", line 254, in execute
+    self._context = self._c.execute_unnamed(
+                    ~~~~~~~~~~~~~~~~~~~~~~~^
+        statement, vals=vals, oids=self._input_oids, stream=stream
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\core.py", line 715, in execute_unnamed
+    self.handle_messages(context)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\core.py", line 835, in handle_messages
+    raise context.error
+pg8000.exceptions.DatabaseError: {'S': 'ERROR', 'V': 'ERROR', 'C': '22001', 'M': 'value too long for type character varying(50)', 'F': 'varchar.c', 'L': '640', 'R': 'varchar'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\legacy.py", line 281, in execute
+    raise cls(msg)
+pg8000.dbapi.ProgrammingError: {'S': 'ERROR', 'V': 'ERROR', 'C': '22001', 'M': 'value too long for type character varying(50)', 'F': 'varchar.c', 'L': '640', 'R': 'varchar'}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\carleton\secure system engineering\final project\sorce codes\banking_system_python\app\routes.py", line 63, in customer_details
+    db.session.commit()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4352, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4487, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4448, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\divyesh\AppData\Local\Programs\Python\Python313\Lib\site-packages\pg8000\legacy.py", line 281, in execute
+    raise cls(msg)
+sqlalchemy.exc.ProgrammingError: (pg8000.dbapi.ProgrammingError) {'S': 'ERROR', 'V': 'ERROR', 'C': '22001', 'M': 'value too long for type character varying(50)', 'F': 'varchar.c', 'L': '640', 'R': 'varchar'}
+[SQL: INSERT INTO customers (customer_id, first_name, password, last_name, date_of_birth, address, phone_number, email, role, created_at) VALUES (%s::UUID, %s::VARCHAR, %s::VARCHAR, %s::VARCHAR, %s::DATE, %s::VARCHAR, %s::VARCHAR, %s::VARCHAR, %s, %s::TIMESTAMP WITHOUT TIME ZONE)]
+[parameters: (UUID('8dcfa92b-8176-40af-8e3c-c77811cc3ba5'), 'Tom', 'f39216f0037abf421391c58155710ee4a7a823ec64ddf1f6c3ba321f4b90e88e', 'pop', datetime.date(2024, 11, 14), 'ffg', '0123456789', 'tom@yopmail.com', 'CUSTOMER', datetime.datetime(2024, 11, 12, 20, 9, 31, 107406, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2024-11-12 15:09:31,150 - INFO - 127.0.0.1 - - [12/Nov/2024 15:09:31] "POST /customer-details HTTP/1.1" 200 -
+2024-11-12 15:09:31,230 - INFO - 127.0.0.1 - - [12/Nov/2024 15:09:31] "[36mGET /static/styles/style2.css HTTP/1.1[0m" 304 -
+2024-11-12 15:09:31,300 - INFO - 127.0.0.1 - - [12/Nov/2024 15:09:31] "[36mGET /static/styles/img2.jpg HTTP/1.1[0m" 304 -
