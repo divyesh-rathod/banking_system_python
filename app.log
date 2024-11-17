@@ -595,3 +595,15 @@ sqlalchemy.exc.ProgrammingError: (pg8000.dbapi.ProgrammingError) {'S': 'ERROR', 
 2024-11-12 15:09:31,150 - INFO - 127.0.0.1 - - [12/Nov/2024 15:09:31] "POST /customer-details HTTP/1.1" 200 -
 2024-11-12 15:09:31,230 - INFO - 127.0.0.1 - - [12/Nov/2024 15:09:31] "[36mGET /static/styles/style2.css HTTP/1.1[0m" 304 -
 2024-11-12 15:09:31,300 - INFO - 127.0.0.1 - - [12/Nov/2024 15:09:31] "[36mGET /static/styles/img2.jpg HTTP/1.1[0m" 304 -
+2024-11-12 23:56:33,734 - INFO - Logging is set up.
+2024-11-12 23:56:33,936 - INFO - Flask app initialized.
+2024-11-12 23:56:33,987 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on https://localhost:5000
+2024-11-12 23:56:33,988 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 23:56:57,361 - INFO - 127.0.0.1 - - [12/Nov/2024 23:56:57] "GET / HTTP/1.1" 200 -
+2024-11-12 23:56:57,519 - INFO - 127.0.0.1 - - [12/Nov/2024 23:56:57] "GET /static/styles/style1.css HTTP/1.1" 200 -
+2024-11-12 23:56:58,272 - INFO - 127.0.0.1 - - [12/Nov/2024 23:56:58] "GET /static/styles/img1.jpg HTTP/1.1" 200 -
+2024-11-12 23:56:58,837 - INFO - 127.0.0.1 - - [12/Nov/2024 23:56:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-12 23:57:30,146 - INFO - 127.0.0.1 - - [12/Nov/2024 23:57:30] "GET /new-user HTTP/1.1" 200 -
+2024-11-12 23:57:30,316 - INFO - 127.0.0.1 - - [12/Nov/2024 23:57:30] "GET /static/styles/style2.css HTTP/1.1" 200 -
+2024-11-12 23:57:30,999 - INFO - 127.0.0.1 - - [12/Nov/2024 23:57:30] "GET /static/styles/img2.jpg HTTP/1.1" 200 -

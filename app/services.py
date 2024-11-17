@@ -21,14 +21,29 @@ def get_customer_id(email):
 
 
 def get_customer_accounts(email):
+    """
+    Retrieve account details for a customer using their email address.
+
+    Args:
+        email (str): The email address of the customer.
+
+    Returns:
+        dict: A dictionary containing customer details and their associated accounts.
+        None: If no customer is found or an exception occurs.
+    """
     try:
+        # Log the beginning of the operation
         logger.info(f"Attempting to retrieve accounts for customer with email: {email}")
+        
+        # Query the database to find the customer by email and eagerly load their accounts
         customer = Customer.query.filter_by(email=email).options(joinedload(Customer.accounts)).first()
         
+        # If no customer is found, log a warning and return None
         if not customer:
             logger.warning(f"No customer found with email: {email}")
             return None
         
+        # Prepare customer and account information as a dictionary
         accounts_info = {
             "customer": {
                 "customer_id": customer.customer_id,
@@ -38,26 +53,29 @@ def get_customer_accounts(email):
                 "address": customer.address,
                 "phone_number": customer.phone_number,
                 "email": customer.email,
-                "role": customer.role.name,
+                "role": customer.role.name,  # Convert enum value to name
                 "created_at": customer.created_at
             },
             "accounts": [
                 {
                     "account_id": account.account_id,
-                    "account_type": account.account_type.name,
+                    "account_type": account.account_type.name,  # Convert enum value to name
                     "balance": account.balance,
                     "created_at": account.created_at,
                     "status": account.status
                 }
-                for account in customer.accounts
+                for account in customer.accounts  # Iterate through associated accounts
             ]
         }
         
+        # Log successful retrieval of accounts
         logger.info(f"Successfully retrieved accounts for email: {email}")
         return accounts_info
     except Exception as e:
+        # Log exception details if an error occurs
         logger.exception(f"Error while retrieving accounts for customer with email {email}: {e}")
         return None
+
 
 
 def get_account_by_id(account_id):
