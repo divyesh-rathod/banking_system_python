@@ -1,5 +1,6 @@
 from .models import Customer, Account
 from sqlalchemy.exc import NoResultFound
+from flask import jsonify
 from sqlalchemy.orm import joinedload
 from app.database import db
 import hashlib
@@ -8,14 +9,26 @@ logger = logging.getLogger(__name__)
 
 def get_customer_id(email):
     try:
+        # Log the attempt to retrieve customer ID
         logger.info(f"Attempting to retrieve customer ID for email: {email}")
+        
+        # Query the database for a customer with the given email
+        # The .one() method ensures we get exactly one result or raise an exception
         customer = Customer.query.filter_by(email=email).one()
+        
+        # Log successful retrieval of customer ID
         logger.info(f"Customer ID for email {email} found: {customer.customer_id}")
+        
+        # Return the customer ID
         return customer.customer_id
+    
     except NoResultFound:
+        # Handle the case where no customer is found with the given email
         logger.error(f"No customer found with email: {email}")
         return None
+    
     except Exception as e:
+        # Handle any other unexpected errors
         logger.exception(f"Error while retrieving customer ID for email {email}: {e}")
         return None
 
@@ -80,14 +93,26 @@ def get_customer_accounts(email):
 
 def get_account_by_id(account_id):
     try:
+        # Log the attempt to retrieve the account
         logger.info(f"Attempting to retrieve account by account_id: {account_id}")
+        
+        # Query the database for an account with the given account_id
+        # The .one() method ensures we get exactly one result or raise an exception
         account = Account.query.filter_by(account_id=account_id).one()
+        
+        # Log successful retrieval of the account
         logger.info(f"Account found for account_id {account_id}")
+        
+        # Return the account object
         return account
+    
     except NoResultFound:
+        # Handle the case where no account is found with the given account_id
         logger.error(f"No account found with account_id: {account_id}")
         return None
+    
     except Exception as e:
+        # Handle any other unexpected errors
         logger.exception(f"Error while retrieving account with account_id {account_id}: {e}")
         return None
 
@@ -121,4 +146,28 @@ def hash_password(password: str) -> str:
     sha256.update(password.encode('utf-8'))
     # Return the hexadecimal representation of the hashed password
     return sha256.hexdigest()
+
+
+def calculate_mtbf(total_downtime, failure_count):
+    # Check if there were any failures
+    if failure_count > 0:
+        # Calculate Mean Time Between Failures (MTBF) in minutes
+        mtbf_minutes = (total_downtime / failure_count).total_seconds() / 60
+        
+        # If MTBF is more than 60 minutes, convert to hours
+        if mtbf_minutes > 60:
+            mtbf_hours = mtbf_minutes / 60
+            # Log the MTBF in hours
+            logger.info(f"MTBF calculated: {mtbf_hours:.2f} hours.")
+            # Return MTBF in hours as JSON
+            return jsonify({"MTBF": round(mtbf_hours, 2), "unit": "hours"})
+        else:
+            # Log the MTBF in minutes
+            logger.info(f"MTBF calculated: {mtbf_minutes:.2f} minutes.")
+            # Return MTBF in minutes as JSON
+            return jsonify({"MTBF": round(mtbf_minutes, 2), "unit": "minutes"})
+    else:
+        # If no failures occurred, log and return appropriate message
+        logger.info("No failures found.")
+        return jsonify({"MTBF": "No failures found", "unit": None})
 

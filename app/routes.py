@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, flash, redirect, url_for,jsonify
 from .database import db
 from .models import  Customer, UserRole, Account
-from .services import get_customer_id, get_customer_accounts,update_account_balance,get_account_by_id,hash_password
+from .services import get_customer_id, get_customer_accounts,update_account_balance,get_account_by_id,hash_password,calculate_mtbf
 from datetime import datetime, timezone
 from datetime import datetime, timedelta 
 import uuid
@@ -105,30 +105,38 @@ def existing_customer():
 
 @main.route('/do-transciction', methods=['GET', 'POST'])
 def transaction101():
+    # Handle GET request
     if request.method == 'GET':
+        # Retrieve email from query parameters
         email = request.args.get('email')
         if not email:
-            # Handle missing email scenario
+            # Log error and redirect if email is missing
             logger.error("Email is required for transactions but was not provided.")
             flash("Email is required to do transactions.", "error")
             return redirect(url_for('main.customer_details'))
         
         logger.info(f"Fetching accounts for email: {email}")
+        # Get all accounts for the customer
         all_acc = get_customer_accounts(email)
         
         if not all_acc:
+            # Handle case where no accounts are found
             logger.warning(f"No accounts found for email: {email}. Suggesting account creation.")
             flash("Please create an account to do transactions.", "error")
             return render_template('customer_details.html')
         else:
+            # Extract accounts from the response
             all_acc1 = all_acc['accounts']
             logger.debug(f"Accounts retrieved for email {email}: {all_acc1}")
             return render_template('transaction.html', all_acc1=all_acc1)
     
+    # Handle POST request
     else:
+        # Retrieve form data
         form_data = request.form
         logger.debug(f"Form data received: {form_data}")
         
+        # Extract transaction details from form data
         account_id = form_data.get('account')
         amount = float(form_data.get('amount'))
         option = form_data.get('option')
@@ -136,32 +144,39 @@ def transaction101():
         
         logger.info(f"Processing transaction for email: {email}, account: {account_id}, amount: {amount}, option: {option}")
         
+        # Fetch customer accounts again
         all_acc = get_customer_accounts(email)
         if not all_acc:
+            # Handle case where no accounts are found
             logger.warning(f"No accounts found for email: {email}. Suggesting account creation.")
             flash("Please create an account to do transactions.", "error")
             return render_template('customer_details.html')
         else:
             all_acc1 = all_acc['accounts']
         
+        # Retrieve the specific account for the transaction
         account = get_account_by_id(account_id)
         if not account:
+            # Handle case where account is not found
             logger.error(f"Account with ID {account_id} not found.")
             flash("Account not found.", "error")
             return render_template('transaction.html', all_acc1=all_acc1)
         
         # Perform deposit or withdrawal based on option
         if option == 'deposit':
+            # Handle deposit
             account.balance += amount
             logger.info(f"Deposited Rs. {amount} to {account.account_type} account with ID {account_id}. New balance: {account.balance}")
             flash(f"Deposited $. {amount} to {account.account_type} account.", "success")
         
         elif option == 'withdraw':
+            # Handle withdrawal
             if account.balance >= amount:
                 account.balance -= amount
                 logger.info(f"Withdrew $. {amount} from {account.account_type} account with ID {account_id}. New balance: {account.balance}")
                 flash(f"Withdrew Rs. {amount} from {account.account_type} account.", "success")
             else:
+                # Handle insufficient balance
                 logger.warning(f"Insufficient balance for withdrawal from account ID {account_id}. Balance: {account.balance}, Attempted withdrawal: {amount}")
                 flash("Insufficient balance for withdrawal.", "error")
                 return render_template('transaction.html', all_acc1=all_acc1)
@@ -174,6 +189,7 @@ def transaction101():
         all_acc = get_customer_accounts(email)
         all_acc1 = all_acc['accounts']
         
+        # Render the transaction page with updated account information
         return render_template('transaction.html', all_acc1=all_acc1)
 
 
@@ -219,53 +235,52 @@ def createAccount():
 def generate_report():
     logger.info("Starting report generation.")
     
-    total_downtime = timedelta(0)
-    failure_count = 0
-    previous_timestamp = None
+    # Initialize variables for tracking downtime and failures
+    total_downtime, failure_count, previous_timestamp = timedelta(0), 0, None
+    
+    # Construct the path to the log file
     log_file_path = os.path.join(os.path.dirname(__file__), '../app.log')
     
-    # Define a regular expression to extract timestamps from each line
+    # Regular expression to match timestamp at the beginning of each log line
     timestamp_pattern = re.compile(r'^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}')
     
-    # Read and parse the log file
     try:
+        # Open and read the log file
         with open(log_file_path, 'r') as file:
             for line in file:
-                # Extract timestamp from each line
+                # Try to match the timestamp pattern at the start of each line
                 match = timestamp_pattern.match(line)
                 if match:
-                    timestamp_str = match.group(0)
-                    current_timestamp = datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M:%S')
+                    # Parse the timestamp if a match is found
+                    current_timestamp = datetime.strptime(match.group(0), '%Y-%m-%d %H:%M:%S')
                     
-                    if previous_timestamp:
-                        # Calculate the time difference
-                        time_difference = current_timestamp - previous_timestamp
-                        
-                        # If downtime (failure) is more than 2 minutes, record it
-                        if time_difference > timedelta(minutes=2):
-                            total_downtime += time_difference
-                            failure_count += 1
-                            logger.debug(f"Downtime detected. Time difference: {time_difference}")
+                    # Check for downtime (gap of more than 2 minutes between log entries)
+                    if previous_timestamp and (current_timestamp - previous_timestamp > timedelta(minutes=2)):
+                        total_downtime += current_timestamp - previous_timestamp
+                        failure_count += 1
+                        logger.debug(f"Downtime detected. Time difference: {current_timestamp - previous_timestamp}")
                     
-                    # Update the previous timestamp
+                    # Update the previous timestamp for the next iteration
                     previous_timestamp = current_timestamp
+    
     except FileNotFoundError:
+        # Handle case where log file is not found
         logger.error("Log file not found. Ensure 'app.log' exists in the correct directory.")
         return jsonify({"error": "Log file not found"}), 404
+    
     except Exception as e:
+        # Handle any other exceptions that occur during file parsing
         logger.exception("An error occurred during log file parsing.")
         return jsonify({"error": "Error generating report"}), 500
 
-    # Calculate MTBF (in minutes)
-    if failure_count > 0:
-        mtbf = total_downtime / failure_count
-        mtbf = mtbf.total_seconds() / 60  # Convert to minutes
-        logger.info(f"MTBF calculated successfully. MTBF: {mtbf} minutes.")
-    else:
-        mtbf = "No failures found"
-        logger.info("No failures found in log file; MTBF calculation skipped.")
-
-    return jsonify({"MTBF": mtbf})
+    # Calculate Mean Time Between Failures (MTBF)
+    mtbf = (total_downtime / failure_count).total_seconds() / 60 if failure_count > 0 else 'No failures found'
+    
+    # Log the calculated MTBF
+    logger.info(f"MTBF calculated: {mtbf} minutes." if isinstance(mtbf, float) else mtbf)
+    
+    # Return the calculated MTBF using the calculate_mtbf function
+    return calculate_mtbf(total_downtime, failure_count)
 
 
 
