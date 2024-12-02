@@ -38,15 +38,13 @@ def customer_details():
         if type_value == 'new':
             existing_customer = Customer.query.filter_by(email=form_data.get('email')).first()
             if existing_customer:
-                tamper_proof_log(logger, 'warning', "Duplicate email entered.")
+                logger.warning("duplicate email enterd")
                 flash("This email is already registered. Please use a different email.", "danger")
                 return render_template("new_user.html")
 
             # Log the action of creating a new customer
             hashed_password = encrypt_password(form_data['password'])
-            tamper_proof_log(logger, 'info', f"Plain password: {form_data['password']}")
-            tamper_proof_log(logger, 'info', f"Hashed password: {hashed_password}")
-            tamper_proof_log(logger, 'info', "Starting process to create a new customer.")
+            logger.info("Starting process to create a new customer.")
 
             # Create a new Customer instance
             new_customer = Customer(
@@ -65,35 +63,35 @@ def customer_details():
             try:
                 db.session.add(new_customer)
                 db.session.commit()
-                tamper_proof_log(logger, 'info', "Customer added to database successfully.")
+                logger.info("Customer added to database successfully.")
                 flash('Customer registered successfully!', 'success')
                 return render_template('customer_details.html')  # Redirect to the transaction page
             except Exception as e:
                 # Log the exception and rollback
-                tamper_proof_log(logger, 'exception', f"Error occurred while registering new customer: {str(e)}")
+                logger.exception("Error occurred while registering new customer.")
                 db.session.rollback()
                 flash('Error registering customer: ' + str(e), 'danger')
                 return render_template('new_user.html')
 
         else:
             # Log an info message when an existing customer attempts to log in
-            tamper_proof_log(logger, 'info', "Attempting to log in existing customer.")
+            logger.info("Attempting to log in existing customer.")
             email = request.form.get('email')
             password = request.form.get('password')
             customer = Customer.query.filter_by(email=email).first()
 
             if customer and form_data['password'] == decrypt_password(password):
-                tamper_proof_log(logger, 'info', "Customer login successful.")
+                logger.info("Customer login successful.")
                 return render_template('customer_details.html')
             else:
                 # Log a warning if login fails
-                tamper_proof_log(logger, 'warning', "Customer login failed due to incorrect email or password.")
+                logger.warning("Customer login failed due to incorrect email or password.")
                 flash('User password or email is incorrect', 'danger')
                 return render_template('existing_user.html')
 
     else:
         # Log an info message if the request method is not POST
-        tamper_proof_log(logger, 'info', "GET request received, redirecting to home page.")
+        logger.info("GET request received, redirecting to home page.")
         return render_template('home.html')
 
 
