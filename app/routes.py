@@ -1,11 +1,13 @@
 from flask import Blueprint, request, render_template, flash, redirect, url_for,jsonify
 from .database import db
 from .models import  Customer, UserRole, Account
-from .services import get_customer_id, get_customer_accounts,update_account_balance,get_account_by_id,hash_password,calculate_mtbf
+from .services import get_customer_id, get_customer_accounts,update_account_balance,get_account_by_id,hash_password,calculate_mtbf,encrypt_password,decrypt_password
 from datetime import datetime, timezone
 from datetime import datetime, timedelta 
 import uuid
 import logging
+import hashlib
+from .secure_log import tamper_proof_log
 import re
 import os
 main = Blueprint('main', __name__)
@@ -32,18 +34,20 @@ def customer_details():
     if request.method == 'POST':
         form_data = request.form
         type_value = form_data.get('type')
-        
+
         if type_value == 'new':
             existing_customer = Customer.query.filter_by(email=form_data.get('email')).first()
             if existing_customer:
-                logger.warning("duplicate email enterd")
+                tamper_proof_log(logger, 'warning', "Duplicate email entered.")
                 flash("This email is already registered. Please use a different email.", "danger")
                 return render_template("new_user.html")
+
             # Log the action of creating a new customer
-            # Hash the password before storing
-            hashed_password = hash_password(form_data['password'])
-            logger.info("Starting process to create a new customer.")
-            
+            hashed_password = encrypt_password(form_data['password'])
+            tamper_proof_log(logger, 'info', f"Plain password: {form_data['password']}")
+            tamper_proof_log(logger, 'info', f"Hashed password: {hashed_password}")
+            tamper_proof_log(logger, 'info', "Starting process to create a new customer.")
+
             # Create a new Customer instance
             new_customer = Customer(
                 first_name=form_data['first_name'],
@@ -61,37 +65,37 @@ def customer_details():
             try:
                 db.session.add(new_customer)
                 db.session.commit()
-                logger.info("Customer added to database successfully.")
+                tamper_proof_log(logger, 'info', "Customer added to database successfully.")
                 flash('Customer registered successfully!', 'success')
                 return render_template('customer_details.html')  # Redirect to the transaction page
             except Exception as e:
                 # Log the exception and rollback
-                logger.exception("Error occurred while registering new customer.")
+                tamper_proof_log(logger, 'exception', f"Error occurred while registering new customer: {str(e)}")
                 db.session.rollback()
                 flash('Error registering customer: ' + str(e), 'danger')
                 return render_template('new_user.html')
-        
+
         else:
             # Log an info message when an existing customer attempts to log in
-            logger.info("Attempting to log in existing customer.")
+            tamper_proof_log(logger, 'info', "Attempting to log in existing customer.")
             email = request.form.get('email')
             password = request.form.get('password')
             customer = Customer.query.filter_by(email=email).first()
-            hashed_password = hash_password(password)
-            
-            if customer and customer.password == hashed_password:
-                logger.info("Customer login successful.")
+
+            if customer and form_data['password'] == decrypt_password(password):
+                tamper_proof_log(logger, 'info', "Customer login successful.")
                 return render_template('customer_details.html')
             else:
                 # Log a warning if login fails
-                logger.warning("Customer login failed due to incorrect email or password.")
-                flash('User password or email is incorrect')
+                tamper_proof_log(logger, 'warning', "Customer login failed due to incorrect email or password.")
+                flash('User password or email is incorrect', 'danger')
                 return render_template('existing_user.html')
-    
+
     else:
         # Log an info message if the request method is not POST
-        logger.info("GET request received, redirecting to home page.")
+        tamper_proof_log(logger, 'info', "GET request received, redirecting to home page.")
         return render_template('home.html')
+
 
 @main.route('/new-customer')
 def new_customer():
@@ -281,6 +285,50 @@ def generate_report():
     
     # Return the calculated MTBF using the calculate_mtbf function
     return calculate_mtbf(total_downtime, failure_count)
+
+
+# secure_log.py
+@main.route('/verify-log',methods=['POST'])
+def verify_log_integrity():
+    """Verify the integrity of the log file by checking the hash chain."""
+    log_file_path = os.path.join(os.path.dirname(__file__), '../app.log')
+
+    # Check if the log file exists
+    if not os.path.exists(log_file_path):
+        return jsonify({'error': 'Log file not found'}), 404
+
+    try:
+        with open(log_file_path, 'r') as f:
+            previous_hash = None
+
+            for line_number, line in enumerate(f, start=1):
+                # Extract the current log entry and hash from the line
+                parts = line.split(' - Hash: ')
+
+                # If the line does not contain ' - Hash:', it is malformed
+                if len(parts) != 2:
+                    logger.warning(f"Malformed log entry at line {line_number}: {line.strip()}")
+                    continue  # Skip this line and move on to the next one
+
+                log_entry = parts[0]
+                current_hash = parts[1].strip()
+
+                # If this is not the first entry, verify the previous hash matches
+                if previous_hash:
+                    calculated_hash = hashlib.sha256(f"{log_entry} - Previous Hash: {previous_hash}".encode('utf-8')).hexdigest()
+                    if calculated_hash != current_hash:
+                        logger.error(f"Integrity check failed at line {line_number}: {log_entry}")
+                        return jsonify({'error': f'Integrity check failed at line {line_number}: {log_entry}'}), 400
+
+                # Update the previous hash to the current hash
+                previous_hash = current_hash
+
+            return jsonify({'message': 'Log file integrity verified successfully'}), 200
+
+    except Exception as e:
+        logger.exception("Error verifying log file integrity")
+        return jsonify({'error': f'An exception occurred: {str(e)}'}), 500
+
 
 
 

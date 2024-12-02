@@ -1,11 +1,19 @@
 from .models import Customer, Account
 from sqlalchemy.exc import NoResultFound
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.serialization import load_pem_private_key, load_pem_public_key
+
 from flask import jsonify
 from sqlalchemy.orm import joinedload
+import os
 from app.database import db
 import hashlib
 import logging
 logger = logging.getLogger(__name__)
+
+PRIVATE_KEY_PATH = os.path.join(os.getcwd(), 'keys', 'private_key.pem')
+PUBLIC_KEY_PATH = os.path.join(os.getcwd(), 'keys', 'public_key.pem')
 
 def get_customer_id(email):
     try:
@@ -170,4 +178,44 @@ def calculate_mtbf(total_downtime, failure_count):
         # If no failures occurred, log and return appropriate message
         logger.info("No failures found.")
         return jsonify({"MTBF": "No failures found", "unit": None})
+    
+def encrypt_password(password: str) -> str:
+    # Use the dynamic PUBLIC_KEY_PATH
+    with open(PUBLIC_KEY_PATH, "rb") as key_file:
+        public_key = load_pem_public_key(key_file.read())
 
+    # Encrypt the password using the public key
+    encrypted = public_key.encrypt(
+        password.encode(),
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+    return encrypted.hex()
+
+def decrypt_password(encrypted_password: str) -> str:
+    # Use the dynamic PRIVATE_KEY_PATH
+    with open(PRIVATE_KEY_PATH, "rb") as key_file:
+        private_key = load_pem_private_key(
+            key_file.read(),
+            password=None,  # Add a password if your private key is password-protected
+        )
+
+    # Convert the encrypted password from hex to bytes
+    encrypted_password_bytes = bytes.fromhex(encrypted_password)
+
+    # Decrypt the password using the private key
+    decrypted = private_key.decrypt(
+        encrypted_password_bytes,
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+    return decrypted.decode()
+
+
+   

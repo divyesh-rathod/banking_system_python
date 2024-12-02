@@ -26,7 +26,7 @@ class Customer(db.Model):
     __tablename__ = 'customers'
     customer_id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     first_name = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(500), nullable=False)  # Increased to 500 for hash storage
+    password = db.Column(db.Text, nullable=False)  # Increased to 500 for hash storage
     last_name = db.Column(db.String(50), nullable=False)
     date_of_birth = db.Column(db.Date, nullable=False)
     address = db.Column(db.Text)

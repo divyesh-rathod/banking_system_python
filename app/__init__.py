@@ -2,7 +2,8 @@ from flask import Flask
 from .config import Config
 from .database import init_db
 from .routes import main
-from .logging_config import setup_logging  # Import the logging setup function
+from .logging_config import setup_logging
+from .tasks import init_scheduler
 
 def create_app():
     # Set up logging
@@ -15,7 +16,9 @@ def create_app():
     # Initialize database and register blueprints
     init_db(app)
     app.register_blueprint(main)
-
-    app.logger.info("Flask app initialized.")  # Example log entry
-
+    
+    # Initialize the scheduler
+    init_scheduler(app)
+    
+    app.logger.info("Flask app initialized.")
     return app
